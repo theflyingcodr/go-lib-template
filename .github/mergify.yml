@@ -70,7 +70,6 @@ pull_request_rules:
       - check-success='lint (1.15.x, windows-latest)'
       - check-success='lint (1.16.x, windows-latest)'
       - check-success='Analyze (go)'
-      - base=main
       - label!=work-in-progress
       - -draft
     actions:
@@ -106,9 +105,9 @@ pull_request_rules:
     actions:
       comment:
         message: "🆘 @{{author}}: `{{head}}` has conflicts with `{{base}}` that must be resolved."
-    label:
-      add:
-        - conflict
+      label:
+        add:
+          - conflict
   - name: Alert on tests failure for automerge
     conditions:
       - label=automerge

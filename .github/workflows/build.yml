@@ -39,8 +39,6 @@ jobs:
 
       - name: Tests
         run: make run-unit-tests
-      - name: Update code coverage
-        run: bash <(curl -s https://codecov.io/bash)
       - name: Build
         run: go build -v ./...
   release:

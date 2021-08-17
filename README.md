@@ -24,3 +24,7 @@ This will hopefully make a good starting point when you are looking to start a n
 ## Build pipeline
 
 The go build will run on PRs and when pushed to master. When you tag master it will then run the go build and then create a release.
+
+## Mergify
+
+It also has a mergify config if you run that on your repos for auto merging etc.

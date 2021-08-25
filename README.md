@@ -34,4 +34,4 @@ The go build will run on PRs and when pushed to master. When you tag master it w
 
 It also has a mergify config if you run that on your repos for auto merging etc.
 
-Lets see if it works.
+Lets see if it works. Hmm

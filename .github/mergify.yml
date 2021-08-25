@@ -28,6 +28,9 @@ pull_request_rules:
         message: Automatically approving dependabot pull request
       merge:
         method: merge
+      label:
+        add:
+          - update
   - name: Alert on major version detection
     conditions:
       - author~=^dependabot(|-preview)\[bot\]$
@@ -48,6 +51,11 @@ pull_request_rules:
     actions:
       comment:
         message: "⚠️ @theflyingcodr: this is a major version bump and requires your attention"
+      label:
+        add:
+          - update
+      assign:
+        users: [ "theflyingcodr" ]
 
 
   # ===============================================================================
@@ -56,7 +64,9 @@ pull_request_rules:
 
   - name: Automatic Merge ⬇️ on Approval ✔
     conditions:
-      - "#approved-reviews-by>=1"
+      - or:
+          - author=theflyingcodr
+          - "#approved-reviews-by>=1"
       - check-success='build (1.15.x, ubuntu-latest)'
       - check-success='build (1.16.x, ubuntu-latest)'
       - check-success='build (1.15.x, macos-latest)'
@@ -73,30 +83,12 @@ pull_request_rules:
       - label!=work-in-progress
       - -draft
     actions:
+      review:
+        type: APPROVE
       merge:
         method: merge
-
-  - name: Automatic Merge ⬇️ on Author by owner ✔
-    conditions:
-      - author=theflyingcodr
-      - check-success='build (1.15.x, ubuntu-latest)'
-      - check-success='build (1.16.x, ubuntu-latest)'
-      - check-success='build (1.15.x, macos-latest)'
-      - check-success='build (1.16.x, macos-latest)'
-      - check-success='build (1.15.x, windows-latest)'
-      - check-success='build (1.16.x, windows-latest)'
-      - check-success='lint (1.15.x, ubuntu-latest)'
-      - check-success='lint (1.16.x, ubuntu-latest)'
-      - check-success='lint (1.15.x, macos-latest)'
-      - check-success='lint (1.16.x, macos-latest)'
-      - check-success='lint (1.15.x, windows-latest)'
-      - check-success='lint (1.16.x, windows-latest)'
-      - check-success='Analyze (go)'
-      - label!=work-in-progress
-      - -draft
-    actions:
-      merge:
-        method: merge
+      comment:
+        message: "Automatically merging this PR, LGTM! \n ![Great Success](https://tenor.com/view/borat-very-nice-great-success-yes-gif-13625290)"
 
   # ===============================================================================
   # AUTHOR
@@ -176,7 +168,7 @@ pull_request_rules:
       - "head~=(?i)^(bug)?fix" # if the PR branch starts with (bug)?fix/
     actions:
       label:
-        add: [ "bug-P3" ]
+        add: [ "bug" ]
   - name: Documentation label
     conditions:
       - "head~=(?i)^docs" # if the PR branch starts with docs/
@@ -242,6 +234,8 @@ pull_request_rules:
       close:
         message: |
           This pull request looks stale. Feel free to reopen it if you think it's a mistake.
+      label:
+        add: [ "stale" ]
   # ===============================================================================
   # BRANCHES
   # ===============================================================================

@@ -1,5 +1,10 @@
 # go-lib-template
 
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/theflyingcodr/go-lib-template/Go?style=flat-square)
+![GitHub](https://img.shields.io/github/license/theflyingcodr/go-lib-template?style=flat-square)
+![GitHub go.mod Go version](https://img.shields.io/github/go-mod/go-version/theflyingcodr/go-lib-template?style=flat-square)
+[![Report](https://goreportcard.com/badge/github.com/theflyingcodr/go-lib-template?style=flat&v=1)](https://goreportcard.com/report/github.com/theflyingcodr/go-lib-template)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/theflyingcodr/go-lib-template?style=flat-square)
 
 A git template that can be used to bootstrap a go library, ie, something that isn't an executable.
 
